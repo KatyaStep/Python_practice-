@@ -11,24 +11,33 @@ figures = {
     'bbishop':'2',
     'brook': '2',
     'bqueen': '1',
-    'bking': '1,'
+    'bking': '1'
 }
 
 chess_board = ['a','b','c', 'd', 'e', 'f', 'g', 'h']
 
-board_for_validation={'wpawn':'2b', 'wking':'4c'}
-message=''
+board_for_validation={'2b':'wking', '8c':'bking', '4d':'wpawn'}
+
 
 def valid_board (board):
+    message=""
     for k, v in board.items():
-        if k in figures:
-            for item in chess_board:
-                for digit in range (1,9):
-                    if str(digit) + str(item) == v:
+        if v in figures:
+            if figures[v] != '0':
+                figures[v] = str(int(figures[v]) - 1)
+                if (int(k[0]) < 9) and (k[1] in chess_board):
+                    #if k[1] in chess_board:
                         message = "That's a correct board"
+                else:
+                    message = "That's not a correct board"
+                    break
+            else:
+                message = "You have incorrect board"
+                break
         else:
             message = "That's not a correct board "
+            break
         
-        return print(message)
+    return print(message)
 
 valid_board(board_for_validation)
