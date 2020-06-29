@@ -1,6 +1,14 @@
 
+# VS review
+# Todo:
+# - fix code style
+# - remove commnets
+# - add doc string to function
+# - don't use variables shorter than 4 letters
+# - On the command line run python3 -m pylint <name of this file>
+
 figures = {
-    'wpawn':'8',
+    'wpawn':'8', # VS: make value a int
     'wknight':'2',
     'wbishop':'2',
     'wrook': '2',
@@ -25,9 +33,9 @@ def valid_board (board):
         if v in figures:
             if figures[v] != '0':
                 figures[v] = str(int(figures[v]) - 1)
-                if (int(k[0]) < 9) and (k[1] in chess_board):
+                if (int(k[0]) < 9) and (k[1] in chess_board): # VS: use variables for k[0] k[1]
                     #if k[1] in chess_board:
-                        message = "That's a correct board"
+                        message = "That's a correct board"  # VS: fix indentation
                 else:
                     message = "That's not a correct board"
                     break

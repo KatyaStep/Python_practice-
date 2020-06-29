@@ -1,3 +1,9 @@
+
+# VS review
+# Todo:
+# - fix code style
+# - remove commnets
+
 grid = [['.', '.', '.', '.', '.', '.'],
        ['.', 'O', 'O', '.', '.', '.'],
        ['O', 'O', 'O', 'O', '.', '.'],

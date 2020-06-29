@@ -22,4 +22,4 @@ for experimentNumber in range(10000):
     flip = []
 
 print ("Number of strike: ", numberOfStreaks)
-print('Chance of streak: %s%%' % (numberOfStreaks / 100))
+print('Chance of streak: %s%%' % (numberOfStreaks / 100)) 
