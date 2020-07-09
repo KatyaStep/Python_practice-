@@ -11,23 +11,14 @@
 """
 
 
-def main():
-    board = [
-        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
-        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
-        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
-        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
-        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
-        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
-    ]
-
+def main(board):
     show_header()
 
     players = ['Kate', 'Computer']
     colors = ['R', 'B']
     index_player = 0
 
-    while not find_winner(board):
+    while not find_winner(board, colors):
         player = players[index_player]
         color = colors[index_player]
 
@@ -70,8 +61,42 @@ def choose_location(board, color):
     return True
 
 
-def find_winner(board):
-    # winner horizontally
+def find_winner(board, colors):
+    sequence = []
+    winner_score = 4
+    # winner row
+    for row in board:
+        for cell in range(len(board[0])):
+            if row[cell] in colors:
+                if row[cell] in sequence:
+                    sequence.append(row[cell])
+                else:
+                    sequence = [row[cell]]
+            else:
+                sequence = []
+
+        if len(sequence) >= winner_score:
+            return True
+
+    # winner column
+    rows = len(board) - 1
+
+    # print(row, col)
+
+    for col in range(len(board[0])):
+        for row in range(rows):
+            print(board[row][col])
+
+            if board[row][col] in colors:
+                if board[row][col] in sequence:
+                    sequence.append(board[row][col])
+                else:
+                    sequence = [board[row][col]]
+            else:
+                sequence = []
+
+        if len(sequence) >= winner_score:
+            return True
 
     return False
 
@@ -86,7 +111,7 @@ def show_board(board):
     # Create a board of size (7 col x 6 rows)
     for row in board:
         for cell in row:
-            symbol=cell if cell != 'None' else '_'
+            symbol = cell if cell != 'None' else '_'
             print(symbol, end='|')
         print()
 
@@ -94,4 +119,12 @@ def show_board(board):
 
 
 if __name__ == "__main__":
-    main()
+    board = [
+        ['None', 'None', 'None', 'R', 'B', 'R', 'R'],
+        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
+        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
+        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
+        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
+        ['None', 'None', 'None', 'None', 'None', 'None', 'None'],
+    ]
+    main(board)
