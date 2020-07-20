@@ -24,18 +24,17 @@ figures = {
 
 chess_board = ['a','b','c', 'd', 'e', 'f', 'g', 'h']
 
-board_for_validation={'2b':'wking', '8c':'bking', '4d':'wpawn'}
+board_for_validation = {'2b':'wking', '8c':'bking', '4d':'wpawn'}
 
 
-def valid_board (board):
-    message=""
+def valid_board(board):
+    message = ""
     for k, v in board.items():
         if v in figures:
             if figures[v] != '0':
                 figures[v] = str(int(figures[v]) - 1)
-                if (int(k[0]) < 9) and (k[1] in chess_board): # VS: use variables for k[0] k[1]
-                    #if k[1] in chess_board:
-                        message = "That's a correct board"  # VS: fix indentation
+                if (int(k[0]) < 9) and (k[1] in chess_board):  # VS: use variables for k[0] k[1]
+                    message = "That's a correct board"  # VS: fix indentation
                 else:
                     message = "That's not a correct board"
                     break
@@ -45,7 +44,8 @@ def valid_board (board):
         else:
             message = "That's not a correct board "
             break
-        
+
     return print(message)
+
 
 valid_board(board_for_validation)
