@@ -1,13 +1,31 @@
-def kadanes_algorithm(array):
-    max_so_far = array[0]
-    max_end_here = array[0]
+from collections import defaultdict
 
-    for idx in range(1, len(array)):
-        num = array[idx]
-        max_end_here = max(num, max_end_here+num)
-        max_so_far = max(max_end_here, max_so_far)
 
-    return max_so_far
+def hasSingleCycle(array):
+    # Write your code here.
+    second_arr = defaultdict()
+    idx = 0
+    while idx < len(array):
+        new_idx = calculate_new_idx(idx, array[idx], len(array))
+        if new_idx not in second_arr:
+            num = array[new_idx]
+            second_arr[new_idx] = num
+            idx = new_idx
+        else:
+            break
 
-print(kadanes_algorithm([3, 5, -9, 1, 3, -2, 3, 4, 7, 2, -9, 6, 3, 1, -5, 4]))
-# print(kadanes_algorithm([-10]))
+    print(second_arr)
+    return len(array) == len(second_arr)
+
+
+def calculate_new_idx(idx, num, length):
+    next_idx = (idx + num) % length
+
+    return next_idx
+
+
+# print(hasSingleCycle([2, 3, 1, -4, -4, 2]))
+# print(hasSingleCycle([2, 2, -1]))
+# print(hasSingleCycle([1, 2, 3, 4, -2, 3, 7, 8, -26]))
+# print(hasSingleCycle([1, -1, 1, -1]))
+print(hasSingleCycle([10, 11, -6, -23, -2, 3, 88, 908, -26]))
